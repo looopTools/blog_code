@@ -1,9 +1,11 @@
 #include "list.h"
+#include "file_io.h"
 
 #include <stdio.h>
 #include <errno.h>   
 #include <limits.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <time.h>
 
 int main(int argc, char **argv)
 {
@@ -34,10 +36,15 @@ int main(int argc, char **argv)
     
     struct list* list = list_construct();
 
+    clock_t start;
+    clock_t stop;
+
+    start = clock();
     for (int i = 0; i < iterations; ++i)
     {
         add_element_with_tail(list, i);
     }
-
-    print_list(list);
+    stop = clock();
+    double time = ((double) (stop - start)) / CLOCKS_PER_SEC;
+    write_result("with_tail.csv", iterations, time);
 }

@@ -15,7 +15,7 @@ void write_result(char* exp_name, int iterations, double time)
         return;
     }
     
-    char buffer[sizeof(int) + sizeof(double) + 1];
+    char buffer[sizeof(int) + sizeof(double) + 10];
     sprintf(buffer, "%d,%f", iterations, time);
     fprintf(out_file, "%s\n", buffer);
     
